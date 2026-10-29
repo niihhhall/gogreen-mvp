@@ -1,7 +1,7 @@
 {
   "name": "gogreen-mvp",
   "version": "2.0.0",
-  "description": "Design and generate a contribution graph that reads as deliberate, sustained activity.",
+  "description": "Design your GitHub contribution graph, preview it in the terminal, then build it. Zero dependencies.",
   "type": "module",
   "main": "./src/cli.js",
   "bin": {
@@ -27,10 +27,21 @@
   },
   "keywords": [
     "git",
-    "contribution-graph",
+    "github",
     "github-profile",
+    "contribution-graph",
+    "contribution-calendar",
+    "contributions",
+    "heatmap",
+    "developer-tools",
     "cli",
-    "visualisation"
+    "nodejs",
+    "zero-dependencies",
+    "productivity",
+    "portfolio",
+    "personal-branding",
+    "visualisation",
+    "backdated-commits"
   ],
   "author": "Nihal Mishra",
   "license": "MIT"

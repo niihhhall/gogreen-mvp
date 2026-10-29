@@ -2,6 +2,14 @@
 
 **Design your contribution graph, then build it.**
 
+[![Node](https://img.shields.io/badge/node-%E2%89%A518.17-339933?logo=node.js&logoColor=white)](https://nodejs.org)
+[![Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen)](package.json)
+[![Tests](https://img.shields.io/badge/tests-22%20passing-success)](test)
+[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+[![PRs](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/niihhhall/gogreen-mvp/pulls)
+
+![GitHub contribution graph showing a full year of sustained activity, with weekend density visibly heavier than weekdays](assets/contribution-graph.webp)
+
 A GitHub profile is read in about four seconds. Before anyone opens a repository, clicks a pin, or reads a line of code, they see one thing: the contribution graph. It is the only part of a profile that communicates volume, rhythm, and consistency at a glance.
 
 `gg` turns that graph into something you control. You describe a shape — a date range, a density, a seed — and it prints an exact preview of the calendar before a single commit exists. When the preview looks right, you apply it.
@@ -189,6 +197,12 @@ Private contributions only appear on the graph if you enable *Settings → Profi
 
 **What if I already have real commits in the range?**
 They are counted. With `--skip-existing` they are respected; without it, they stack on top. Prefer `--skip-existing` when mixing real work with design.
+
+---
+
+## Topics
+
+`git` · `github-profile` · `contribution-graph` · `contribution-calendar` · `heatmap` · `developer-tools` · `cli` · `nodejs` · `zero-dependencies` · `productivity` · `portfolio` · `personal-branding` · `visualisation`
 
 ---
 
