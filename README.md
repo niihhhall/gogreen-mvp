@@ -12,11 +12,11 @@
 
 A GitHub profile is read in about four seconds. Before anyone opens a repository, clicks a pin, or reads a line of code, they see one thing: the contribution graph. It is the only part of a profile that communicates volume, rhythm, and consistency at a glance.
 
-`gg` turns that graph into something you control. You describe a shape — a date range, a density, a seed — and it prints an exact preview of the calendar before a single commit exists. When the preview looks right, you apply it.
+`gg` turns that graph into something you control. You describe a shape (a date range, a density, a seed) and it prints an exact preview of the calendar before a single commit exists. When the preview looks right, you apply it.
 
 No dependencies. No configuration files. One command.
 
-Run `gg` and it prints a shaded terminal calendar plus exact counts — commits, active days, rest days, and the busiest single day — before anything is written. The same `--seed` always produces the same graph.
+Run `gg` and it prints a shaded terminal calendar plus exact counts: commits, active days, rest days, and the busiest single day, all before anything is written. The same `--seed` always produces the same graph.
 
 ---
 
@@ -31,7 +31,7 @@ A graph that is uniformly dark reads as noise. A graph that is uniformly empty r
 | `subtle` | Low-key presence. Mostly open calendar with a scattering of marks. | ~250 |
 | `balanced` | Steady weekday rhythm, weekends visibly stronger. | ~750 |
 | `premium` | Deep, consistent coverage with texture. **Default.** | ~1,100 |
-| `dense` | Maximum saturation. No contrast left — use sparingly. | ~2,300 |
+| `dense` | Maximum saturation. No contrast left, so use sparingly. | ~2,300 |
 
 Each profile also leaves a percentage of days deliberately empty. Those gaps are what make the busy days look deliberate instead of automated.
 
@@ -39,7 +39,7 @@ Each profile also leaves a percentage of days deliberately empty. Those gaps are
 
 ## Quickstart
 
-Requires Node 18.17 or newer and git. Nothing else — there is no `npm install` step.
+Requires Node 18.17 or newer and git. Nothing else, so there is no `npm install` step.
 
 ```bash
 git clone https://github.com/niihhhall/gogreen-mvp.git
@@ -71,8 +71,8 @@ gg --profile balanced
 | `--from <YYYY-MM-DD>` | First day to cover. Defaults to 1 January of the target year. |
 | `--to <YYYY-MM-DD>` | Last day to cover. Defaults to today. |
 | `--profile <name>` | `subtle`, `balanced`, `premium`, or `dense`. |
-| `--weekday <n>` | Fixed commits Mon–Fri. Overrides the profile — and disables rest days. |
-| `--weekend <n>` | Fixed commits Sat–Sun. Same behaviour. |
+| `--weekday <n>` | Fixed commits Mon-Fri. Overrides the profile, and disables rest days. |
+| `--weekend <n>` | Fixed commits Sat-Sun. Same behaviour. |
 | `--max-per-day <n>` | Hard ceiling on any single day. Default 18. |
 | `--seed <text>` | Any string. The same seed always produces the same graph. |
 | `--skip-existing` | Top up days that are below target instead of adding on top. |
@@ -116,7 +116,7 @@ Nothing is written until you add `--apply`, so this is free.
 node bin/gg.js --from 2025-01-01 --to 2025-12-31 --weekday 2 --weekend 2 --apply
 ```
 
-Fixed counts remove all randomness — every day gets exactly the number you name. Useful for bands, blocks, and patterns.
+Fixed counts remove all randomness: every day gets exactly the number you name. Useful for bands, blocks, and patterns.
 
 ---
 
@@ -130,7 +130,7 @@ Four decisions shape the whole tool.
 
 **Deterministic by seed.** Randomness comes from a seeded generator, not `Math.random()`. The same seed and range produce a byte-identical plan, which means a preview can be reviewed, adjusted, and then applied with confidence that it is the same graph.
 
-**History-aware.** Before planning, the tool reads the commit count for every date already in the repository — not just the ones it created. That is what makes `--skip-existing` accurate and lets you mix real work with deliberate coverage without double-counting.
+**History-aware.** Before planning, the tool reads the commit count for every date already in the repository, not just the ones it created. That is what makes `--skip-existing` accurate and lets you mix real work with deliberate coverage without double-counting.
 
 ### Safety rails
 
@@ -151,13 +151,16 @@ src/calendar.js    date parsing, ranges, weekend detection
 src/planner.js     density profiles and plan construction
 src/git.js         commit, history, and push wrappers
 src/render.js      heatmap preview and progress bar
+scripts/           repository checks (see AGENTS.md)
 test/              unit tests (node:test, no dependencies)
+AGENTS.md          editing conventions and hard rules
 ```
 
 The planner is pure: given a range, a profile, and a seed, it returns a plan and touches nothing. Everything that writes to disk or runs git lives in `src/git.js`. That separation is why the whole planning layer is covered by fast unit tests.
 
 ```bash
-npm test
+npm test      # unit tests, then the repository checks
+npm run lint  # repository checks only
 ```
 
 ---

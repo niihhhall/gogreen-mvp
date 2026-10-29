@@ -8,7 +8,7 @@
 import { PROFILES, DEFAULT_PROFILE } from "./planner.js";
 
 export const USAGE = `
-  gg — build a contribution graph you actually designed
+  gg: build a contribution graph you actually designed
 
   Usage
     gg [options]
@@ -20,8 +20,8 @@ export const USAGE = `
   Shape
     --profile <name>        ${Object.keys(PROFILES).join(" | ")}
                                                           (default: ${DEFAULT_PROFILE})
-    --weekday <n>           fixed commits on Mon–Fri, overrides the profile
-    --weekend <n>           fixed commits on Sat–Sun, overrides the profile
+    --weekday <n>           fixed commits on Mon-Fri, overrides the profile
+    --weekend <n>           fixed commits on Sat-Sun, overrides the profile
     --max-per-day <n>       hard ceiling per day          (default: 18)
     --seed <text>           same seed, same graph         (default: "default")
     --skip-existing         top up only days that are below target
@@ -96,7 +96,7 @@ export function parseArgs(argv) {
         const value = needsValue();
         if (!PROFILES[value]) {
           throw new Error(
-            `unknown profile "${value}" — choose one of: ${Object.keys(PROFILES).join(", ")}`,
+            `unknown profile "${value}": choose one of: ${Object.keys(PROFILES).join(", ")}`,
           );
         }
         options.profile = value;

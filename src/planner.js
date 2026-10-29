@@ -38,7 +38,7 @@ export const PROFILES = {
     rest: 0.12,
   },
   dense: {
-    summary: "Maximum saturation. Use sparingly — no contrast left.",
+    summary: "Maximum saturation. Use sparingly: no contrast remains.",
     weekday: [3, 7],
     weekend: [8, 14],
     rest: 0.05,
@@ -56,7 +56,7 @@ export const DEFAULT_MAX_PER_DAY = 18;
  * @param {Date}   options.to            Last day of the range (inclusive).
  * @param {string} options.profile       Key of PROFILES.
  * @param {string} options.seed          Any string; identical seeds match.
- * @param {Date}   options.today         Reference "now" — days after it are skipped.
+ * @param {Date}   options.today         Reference "now"; days after it are skipped.
  * @param {Map<string, number>} [options.history]  Existing commits per date key.
  * @param {boolean} [options.skipExisting]         Subtract existing commits per day.
  * @param {number}  [options.maxPerDay]            Hard ceiling per day.
@@ -79,7 +79,7 @@ export function buildPlan({
 
   if (!preset) {
     throw new Error(
-      `unknown profile "${profile}" — choose one of: ${Object.keys(PROFILES).join(", ")}`,
+      `unknown profile "${profile}": choose one of: ${Object.keys(PROFILES).join(", ")}`,
     );
   }
 

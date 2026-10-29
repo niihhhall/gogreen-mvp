@@ -15,12 +15,15 @@
     "bin",
     "src",
     "README.md",
+    "AGENTS.md",
     "LICENSE"
   ],
   "scripts": {
     "start": "node bin/gg.js",
     "preview": "node bin/gg.js",
-    "test": "node --test"
+    "lint": "node scripts/check-chars.mjs",
+    "test": "node --test && node scripts/check-chars.mjs",
+    "verify": "node --test && node scripts/check-chars.mjs"
   },
   "engines": {
     "node": ">=18.17"

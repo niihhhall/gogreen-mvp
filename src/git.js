@@ -1,7 +1,7 @@
 /**
  * Git plumbing.
  *
- * Thin, explicit wrappers over the `git` binary. Nothing here decides policy —
+ * Thin, explicit wrappers over the `git` binary. Nothing here decides policy:
  * the caller passes a complete instruction and gets a result or a raised error.
  */
 
@@ -53,7 +53,7 @@ export async function assertCleanIndex(cwd) {
   } catch {
     throw new Error(
       "you have staged changes.\n" +
-        "Commit or unstage them first — this tool only creates empty commits.",
+        "Commit or unstage them first. This tool only creates empty commits.",
     );
   }
 }

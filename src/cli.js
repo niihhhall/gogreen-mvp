@@ -85,7 +85,7 @@ export async function main(argv) {
   print("");
 
   if (plan.commits.length === 0) {
-    print("Nothing to do — this range already meets the target.");
+    print("Nothing to do: this range already meets the target.");
     return 0;
   }
 
@@ -106,7 +106,7 @@ export async function main(argv) {
       await push(cwd);
       print("✔ pushed");
     } catch (error) {
-      print("✖ push failed — the commits are safe locally.");
+      print("✖ push failed. The commits are safe locally.");
       print(`  ${error.message.split("\n")[0]}`);
       print("  Retry with: git push");
       return 1;
