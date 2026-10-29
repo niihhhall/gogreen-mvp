@@ -20,9 +20,9 @@ export const USAGE = `
   Shape
     --profile <name>        ${Object.keys(PROFILES).join(" | ")}
                                                           (default: ${DEFAULT_PROFILE})
-    --weekday <n>           fixed commits on Mon-Fri, overrides the profile
-    --weekend <n>           fixed commits on Sat-Sun, overrides the profile
-    --max-per-day <n>       hard ceiling per day          (default: 18)
+    --weekday <n|a-b>       commits on Mon-Fri, a count or a range such as 52-78
+    --weekend <n|a-b>       commits on Sat-Sun, a count or a range
+    --max-per-day <n>       hard ceiling per day          (default: 18, raised to fit an explicit range)
     --seed <text>           same seed, same graph         (default: "default")
     --skip-existing         top up only days that are below target
 
@@ -54,7 +54,7 @@ export function parseArgs(argv) {
     profile: DEFAULT_PROFILE,
     weekday: undefined,
     weekend: undefined,
-    maxPerDay: 18,
+    maxPerDay: undefined,
     seed: "default",
     skipExisting: false,
     apply: false,
@@ -85,6 +85,27 @@ export function parseArgs(argv) {
       return value;
     };
 
+    // Accepts a single count or an inclusive range such as "52-78".
+    const asRange = () => {
+      const raw = needsValue();
+      const match = /^(\d+)(?:\s*-\s*(\d+))?$/.exec(raw.trim());
+
+      if (!match) {
+        throw new Error(
+          `${token} needs a whole number or a range such as 52-78 (received "${raw}")`,
+        );
+      }
+
+      const min = Number(match[1]);
+      const max = match[2] === undefined ? min : Number(match[2]);
+
+      if (max < min) {
+        throw new Error(`${token} range is backwards: ${min}-${max}`);
+      }
+
+      return [min, max];
+    };
+
     switch (token) {
       case "--from":
         options.from = needsValue();
@@ -103,10 +124,10 @@ export function parseArgs(argv) {
         break;
       }
       case "--weekday":
-        options.weekday = asInteger();
+        options.weekday = asRange();
         break;
       case "--weekend":
-        options.weekend = asInteger();
+        options.weekend = asRange();
         break;
       case "--max-per-day":
         options.maxPerDay = asInteger();

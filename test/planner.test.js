@@ -98,4 +98,24 @@ describe("buildPlan", () => {
   it("rejects an unknown profile", () => {
     assert.throws(() => buildPlan({ ...base, profile: "loud" }), /unknown profile/);
   });
+
+  it("accepts range overrides and stays inside them", () => {
+    const plan = buildPlan({ ...base, weekday: [52, 78], weekend: [102, 128] });
+
+    for (const day of plan.days) {
+      const [min, max] = day.weekend ? [102, 128] : [52, 78];
+      assert.ok(day.count >= min, `${day.key} got ${day.count}, expected at least ${min}`);
+      assert.ok(day.count <= max, `${day.key} got ${day.count}, expected at most ${max}`);
+    }
+  });
+
+  it("raises the default ceiling to fit an explicit range", () => {
+    const plan = buildPlan({ ...base, weekday: [52, 78], weekend: [102, 128] });
+    assert.ok(plan.summary.peak >= 52, `peak ${plan.summary.peak} was clipped`);
+  });
+
+  it("still honours an explicit ceiling over a range", () => {
+    const plan = buildPlan({ ...base, weekday: [52, 78], weekend: [102, 128], maxPerDay: 60 });
+    assert.ok(plan.days.every((day) => day.count <= 60));
+  });
 });

@@ -59,9 +59,10 @@ export const DEFAULT_MAX_PER_DAY = 18;
  * @param {Date}   options.today         Reference "now"; days after it are skipped.
  * @param {Map<string, number>} [options.history]  Existing commits per date key.
  * @param {boolean} [options.skipExisting]         Subtract existing commits per day.
- * @param {number}  [options.maxPerDay]            Hard ceiling per day.
- * @param {number}  [options.weekday]              Override profile weekday range.
- * @param {number}  [options.weekend]              Override profile weekend range.
+ * @param {number}  [options.maxPerDay]            Hard ceiling per day. Defaults to 18,
+ *                                                 raised automatically to fit an explicit range.
+ * @param {number|[number, number]} [options.weekday]  Override profile weekday count or range.
+ * @param {number|[number, number]} [options.weekend]  Override profile weekend count or range.
  */
 export function buildPlan({
   from,
@@ -71,7 +72,7 @@ export function buildPlan({
   today,
   history = new Map(),
   skipExisting = false,
-  maxPerDay = DEFAULT_MAX_PER_DAY,
+  maxPerDay,
   weekday,
   weekend,
 }) {
@@ -83,7 +84,21 @@ export function buildPlan({
     );
   }
 
-  const ceiling = Math.max(0, Math.floor(maxPerDay));
+  const weekdayRange = resolveOverride(weekday);
+  const weekendRange = resolveOverride(weekend);
+
+  // An explicit range must never be silently clipped by the default ceiling,
+  // so the ceiling grows to fit whatever the caller asked for.
+  const requestedPeak = Math.max(
+    0,
+    weekdayRange?.[1] ?? 0,
+    weekendRange?.[1] ?? 0,
+  );
+  const ceiling =
+    maxPerDay === undefined
+      ? Math.max(DEFAULT_MAX_PER_DAY, requestedPeak)
+      : Math.max(0, Math.floor(maxPerDay));
+
   const next = createRandom(seed);
   const days = [];
 
@@ -96,12 +111,12 @@ export function buildPlan({
       continue;
     }
 
-    const override = weekendDay ? weekend : weekday;
+    const override = weekendDay ? weekendRange : weekdayRange;
     let count;
 
-    if (override !== undefined) {
+    if (override) {
       // An explicit count means exactly that: no rest days, no variation.
-      count = Math.max(0, Math.floor(override));
+      count = randomInt(next, override[0], override[1]);
     } else if (next() >= preset.rest) {
       const [min, max] = weekendDay ? preset.weekend : preset.weekday;
       count = randomInt(next, min, max);
@@ -151,6 +166,20 @@ export function buildPlan({
   };
 
   return { profile, seed, days, commits, summary };
+}
+
+/** Normalise a count or a [min, max] range into a range, or undefined. */
+function resolveOverride(value) {
+  if (value === undefined || value === null) return undefined;
+
+  if (Array.isArray(value)) {
+    const min = Math.max(0, Math.floor(Number(value[0])));
+    const max = Math.max(min, Math.floor(Number(value[1])));
+    return [min, max];
+  }
+
+  const count = Math.max(0, Math.floor(Number(value)));
+  return [count, count];
 }
 
 /**
