@@ -16,26 +16,7 @@ A GitHub profile is read in about four seconds. Before anyone opens a repository
 
 No dependencies. No configuration files. One command.
 
-```
-     Jan       Feb     Mar     Apr     May     Jun     Jul     Aug     Sep     Oct     Nov       Dec
-Sun    ▓ ▓ ▒ ▓ ▓ ▒ · ▓ · ▓ ▓ ▓ · ▒ ▓ · ▒ ▓ ▓ ▒ ▓ ▒ ▓ · ▓ ▓ ▓ ▒ ▓ ▒ ▓ ▓ ▓ ▒ ▒ ▒ ▓ ▓ ▓ ▒ ▓ ▓ · ▒ ▓ ▓ ▒ · ▒ · ▒ ▓
-Mon    · ░ ▒ ▒ ░ ░ ░ ░ ▒ ░ · · · ░ ░ · ░ ░ ▒ ░ ▒ ▒ ░ ▒ · ▒ ░ ▒ ▒ ▒ ░ · ░ ▒ ░ ▒ ▒ ▒ ▒ · ░ ░ ░ · ▒ ▒ ▒ ░ ▒ ░ ▒ ░
-Tue    · ░ ░ ▒ ░ ░ ▒ · ░ ▒ ░ ▒ ░ · ▒ ▒ ▒ ░ ░ ░ · ▒ ░ ▒ · ▒ ░ ▒ ▒ ░ ▒ ░ ▒ ░ ▒ ▒ · ░ ░ · ▒ ░ · ▒ · ░ ▒ ▒ ░ · ▒ ▒
-Wed  ░ ░ ░ · ░ ░ ░ ▒ ▒ ▒ ░ ▒ ░ ░ ░ ▒ ░ ▒ · ▒ ░ ░ ░ ▒ · · ░ · ░ ░ ▒ ░ ░ ▒ ░ ░ ▒ ▒ ░ ░ ▒ ▒ ▒ ▒ ░ ▒ · ░ ▒ ░ ▒ ▒ ░
-Thu  ▒ ▒ · ░ ▒ ▒ ▒ · ▒ ▒ · ▒ ░ ▒ ▒ ░ ▒ ▒ ▒ ▒ ▒ · ░ · ░ · ▒ ▒ · ▒ ░ ░ · ▒ ░ ▒ ▒ ░ ░ ░ ▒ ░ ░ · ▒ ▒ ░ ░ ▒ ▒ ░ ▒
-Fri  ░ ░ ░ ░ · ░ ▒ ▒ ░ ░ · · ░ ▒ ░ ▒ ░ ▒ ░ ▒ ▒ ░ ▒ ░ ▒ ░ ▒ ░ · · ░ · ░ ░ ▒ ░ ▒ · ▒ ▒ ░ ▒ ▒ ▒ ▒ ░ ░ ░ ▒ ▒ · ░
-Sat  ▓ ▓ ▒ ▓ · ▓ ▓ ▒ ▓ ▒ ▒ ▓ ▓ ▒ ▒ ▓ · ▓ ▒ · ▓ · ▓ ▓ ▒ ▓ · ▓ ▓ ▒ · ▓ ▓ ▒ ▓ ▒ ▒ · · ▓ ▒ ▓ · ▓ ▒ ▒ ▓ ▓ ▓ ▓ ▓ ▓
-     less · ░ ▒ ▓ █ more
-
-profile     premium  (seed "showcase")
-range       Wed, 1 Jan 2025 → Wed, 31 Dec 2025
-commits     1123
-active days 306 of 365
-rest days   59
-peak        9 commits on a single day
-```
-
-That preview is real, reproducible output. The same `--seed` always produces the same graph.
+Run `gg` and it prints a shaded terminal calendar plus exact counts — commits, active days, rest days, and the busiest single day — before anything is written. The same `--seed` always produces the same graph.
 
 ---
 
