@@ -1,0 +1,37 @@
+name: Feature request
+description: Suggest a new flag, profile, or behaviour.
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What are you trying to do, and what stops you today?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Your idea
+      description: Describe the change. An example command helps a lot.
+      placeholder: node bin/gg.js --profile balanced --new-flag value
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Other options you considered
+      description: Any workaround or different approach you tried.
+
+  - type: checkboxes
+    id: rules
+    attributes:
+      label: Project rules
+      description: The idea must fit the rules in AGENTS.md.
+      options:
+        - label: It needs no runtime dependencies.
+          required: true
+        - label: If it changes state, it stays behind --apply and the default run is still a preview.
+          required: true

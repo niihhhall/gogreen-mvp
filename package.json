@@ -1,7 +1,15 @@
 {
   "name": "gogreen-mvp",
   "version": "2.0.0",
-  "description": "Design your GitHub contribution graph, preview it in the terminal, then build it. Zero dependencies.",
+  "description": "Design your GitHub contribution graph in the terminal. Preview the exact calendar, then build it with empty, backdated git commits. Seeded, safe by default, zero dependencies.",
+  "homepage": "https://github.com/niihhhall/gogreen-mvp#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niihhhall/gogreen-mvp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/niihhhall/gogreen-mvp/issues"
+  },
   "type": "module",
   "main": "./src/cli.js",
   "bin": {
@@ -35,15 +43,20 @@
     "contribution-graph",
     "contribution-calendar",
     "contributions",
+    "github-contributions",
     "heatmap",
     "developer-tools",
     "cli",
+    "terminal",
     "nodejs",
+    "javascript",
     "zero-dependencies",
+    "git-commits",
+    "commit-history",
     "productivity",
     "portfolio",
     "personal-branding",
-    "visualisation",
+    "visualization",
     "backdated-commits"
   ],
   "author": "Nihal Mishra",
